@@ -37,6 +37,7 @@ class _HomaPageState extends State<HomePage> {
         _matrix[i][j] = ' ';
       } 
     }
+  _lastchar='o';
   }
 
   @override
@@ -143,12 +144,20 @@ class _HomaPageState extends State<HomePage> {
     }
     if (b==true){
       var snackBar = SnackBar(
-        backgroundColor: Colors.greenAccent,
-        duration: Duration(seconds: 3),
-        content: Center(child: Text($player+" is the Winner")),
+        //backgroundColor: Colors.greenAccent,
+        //duration: Duration(seconds: 2),
+        content:Text($player+" is the Winner"),
+        action: SnackBarAction(
+          label: 'Repeat',
+          onPressed: (){
+              setState(() {
+                _initMatrix();    
+              });
+          },
+        ),
       );
       _scaffolkey.currentState.showSnackBar(snackBar);
-      _initMatrix();
+      //_initMatrix();
     }
   }
 
