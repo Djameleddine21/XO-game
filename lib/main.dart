@@ -89,7 +89,7 @@ class _HomaPageState extends State<HomePage> {
         else _matrix[i][j] = 'x';
         _lastchar = _matrix[i][j]; 
         });
-        _checkwinner(i,j);
+        _checkwinner();
       },
       child: Container(
         width: 90.0,
@@ -107,21 +107,45 @@ class _HomaPageState extends State<HomePage> {
     );
   }
 
-  _checkwinner(int i,int j){
-    var col =0,row=0,diag=0,rdiag=0;
-    var n=_matrix.length - 1;
-    var player = _matrix[i][j];
-    for (int k=0 ; k<_matrix.length;k++){
-      if(_matrix[i][k]==player) col++;
-      if(_matrix[k][j]==player) row++;
-      if(_matrix[k][k]==player) diag++;
-      if(_matrix[k][n-k]==player) col++;
-    } 
-    if (row==n+1 || col==n+1 || diag==n+1 || rdiag==n+1){
+  _checkwinner(){
+    var $player=' ';
+    bool b=false;
+    if(_matrix[0][0]==_matrix[0][1] && _matrix[0][1]==_matrix[0][2] && _matrix[0][0]!=' ' && _matrix[0][1]!=' ' && _matrix[0][2]!=' '){
+      $player = _matrix[0][0];
+      b=true;
+    }
+    else if(_matrix[0][0]==_matrix[1][0] && _matrix[1][0]==_matrix[2][0] && _matrix[0][0]!=' ' && _matrix[1][0]!=' ' && _matrix[2][0]!=' '){
+      $player = _matrix[0][0];
+      b=true;
+    }
+    else if(_matrix[0][0]==_matrix[1][1] && _matrix[1][1]==_matrix[2][2] && _matrix[0][0]!=' ' && _matrix[1][1]!=' ' && _matrix[2][2]!=' '){
+      $player = _matrix[0][0];
+      b=true;
+    }
+    else if(_matrix[1][0]==_matrix[1][1] && _matrix[1][1]==_matrix[1][2] && _matrix[1][0]!=' ' && _matrix[1][1]!=' ' && _matrix[1][2]!=' '){
+      $player = _matrix[1][0];
+    }
+    else if(_matrix[2][0]==_matrix[2][1] && _matrix[2][1]==_matrix[2][2] && _matrix[2][0]!=' ' && _matrix[2][1]!=' ' && _matrix[2][2]!=' '){
+      $player = _matrix[2][0];
+      b=true;
+    }
+    else if(_matrix[0][1]==_matrix[1][1] && _matrix[1][1]==_matrix[2][1] && _matrix[0][1]!=' ' && _matrix[1][1]!=' ' && _matrix[2][1]!=' '){
+      $player = _matrix[0][1];
+      b=true;
+    }
+    else if(_matrix[0][2]==_matrix[1][2] && _matrix[1][2]==_matrix[2][2] && _matrix[0][2]!=' ' && _matrix[1][2]!=' ' && _matrix[2][2]!=' '){
+      $player = _matrix[0][2];
+      b=true;
+    }
+    else if(_matrix[2][0]==_matrix[1][1] && _matrix[1][1]==_matrix[0][2] && _matrix[2][0]!=' ' && _matrix[1][1]!=' ' && _matrix[0][2]!=' '){
+      $player = _matrix[2][0];
+      b=true;
+    }
+    if (b==true){
       var snackBar = SnackBar(
         backgroundColor: Colors.greenAccent,
         duration: Duration(seconds: 3),
-        content: Center(child: Text("$player is the Winner")),
+        content: Center(child: Text($player+" is the Winner")),
       );
       _scaffolkey.currentState.showSnackBar(snackBar);
       _initMatrix();
