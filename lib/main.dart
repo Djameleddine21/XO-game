@@ -146,26 +146,13 @@ class _HomaPageState extends State<HomePage> {
         _matrix[0][2] != ' ') {
       $player = _matrix[0][0];
       b = true;
-    } else if (_matrix[0][0] == _matrix[1][0] &&
-        _matrix[1][0] == _matrix[2][0] &&
-        _matrix[0][0] != ' ' &&
-        _matrix[1][0] != ' ' &&
-        _matrix[2][0] != ' ') {
-      $player = _matrix[0][0];
-      b = true;
-    } else if (_matrix[0][0] == _matrix[1][1] &&
-        _matrix[1][1] == _matrix[2][2] &&
-        _matrix[0][0] != ' ' &&
-        _matrix[1][1] != ' ' &&
-        _matrix[2][2] != ' ') {
-      $player = _matrix[0][0];
-      b = true;
     } else if (_matrix[1][0] == _matrix[1][1] &&
         _matrix[1][1] == _matrix[1][2] &&
         _matrix[1][0] != ' ' &&
         _matrix[1][1] != ' ' &&
         _matrix[1][2] != ' ') {
       $player = _matrix[1][0];
+      b = true;
     } else if (_matrix[2][0] == _matrix[2][1] &&
         _matrix[2][1] == _matrix[2][2] &&
         _matrix[2][0] != ' ' &&
@@ -173,12 +160,19 @@ class _HomaPageState extends State<HomePage> {
         _matrix[2][2] != ' ') {
       $player = _matrix[2][0];
       b = true;
-    } else if (_matrix[1][0] == _matrix[1][1] &&
-        _matrix[1][1] == _matrix[1][2] &&
+    } else if (_matrix[0][0] == _matrix[1][0] &&
+        _matrix[1][0] == _matrix[2][0] &&
+        _matrix[0][0] != ' ' &&
         _matrix[1][0] != ' ' &&
+        _matrix[2][0] != ' ') {
+      $player = _matrix[0][0];
+      b=true;
+    } else if (_matrix[0][1] == _matrix[1][1] &&
+        _matrix[1][1] == _matrix[2][1] &&
+        _matrix[0][1] != ' ' &&
         _matrix[1][1] != ' ' &&
-        _matrix[1][2] != ' ') {
-      $player = _matrix[1][0];
+        _matrix[2][1] != ' ') {
+      $player = _matrix[0][1];
       b = true;
     } else if (_matrix[0][2] == _matrix[1][2] &&
         _matrix[1][2] == _matrix[2][2] &&
@@ -187,12 +181,19 @@ class _HomaPageState extends State<HomePage> {
         _matrix[2][2] != ' ') {
       $player = _matrix[0][2];
       b = true;
-    } else if (_matrix[2][0] == _matrix[1][1] &&
-        _matrix[1][1] == _matrix[0][2] &&
-        _matrix[2][0] != ' ' &&
+    } else if (_matrix[0][0] == _matrix[1][1] &&
+        _matrix[1][1] == _matrix[2][2] &&
+        _matrix[0][0] != ' ' &&
         _matrix[1][1] != ' ' &&
-        _matrix[0][2] != ' ') {
-      $player = _matrix[2][0];
+        _matrix[2][2] != ' ') {
+      $player = _matrix[0][0];
+      b = true;
+    } else if (_matrix[0][2] == _matrix[1][1] &&
+        _matrix[1][1] == _matrix[2][0] &&
+        _matrix[0][2] != ' ' &&
+        _matrix[1][1] != ' ' &&
+        _matrix[2][0] != ' ') {
+      $player = _matrix[0][2];
       b = true;
     }
     if (b == true) {
